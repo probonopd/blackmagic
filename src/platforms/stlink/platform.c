@@ -61,14 +61,18 @@ void platform_init(void)
 		led_idle_run = GPIO9;
 		srst_pin = SRST_PIN_V2;
 	}
-	/* Setup GPIO ports */
+	/* Setup GPIO ports.
+	 * TMS and TDO have pullups. Keep there default level!
+	 */
+	gpio_set(TMS_PORT, TMS_PIN);
+	gpio_set(TDI_PORT, TDI_PIN);
+	gpio_set(SRST_PORT, srst_pin);
 	gpio_set_mode(TMS_PORT, GPIO_MODE_OUTPUT_50_MHZ,
 	              GPIO_CNF_OUTPUT_PUSHPULL, TMS_PIN);
 	gpio_set_mode(TCK_PORT, GPIO_MODE_OUTPUT_50_MHZ,
 	              GPIO_CNF_OUTPUT_PUSHPULL, TCK_PIN);
 	gpio_set_mode(TDI_PORT, GPIO_MODE_OUTPUT_50_MHZ,
 	              GPIO_CNF_OUTPUT_PUSHPULL, TDI_PIN);
-	gpio_set(SRST_PORT, srst_pin);
 	gpio_set_mode(SRST_PORT, GPIO_MODE_OUTPUT_50_MHZ,
 	              GPIO_CNF_OUTPUT_OPENDRAIN, srst_pin);
 

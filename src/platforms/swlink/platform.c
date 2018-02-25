@@ -56,7 +56,10 @@ void platform_init(void)
 	data &= ~AFIO_MAPR_SWJ_MASK;
 	data |= AFIO_MAPR_SWJ_CFG_JTAG_OFF_SW_OFF;
 	AFIO_MAPR = data;
-	/* Setup JTAG GPIO ports */
+	/* Setup JTAG GPIO ports
+	 * Keep default values for TMS/TDI. */
+	gpio_set(TMS_PORT, TMS_PIN);
+	gpio_set(TDI_PORT, TDI_PIN);
 	gpio_set_mode(TMS_PORT, GPIO_MODE_OUTPUT_10_MHZ,
 			GPIO_CNF_OUTPUT_PUSHPULL, TMS_PIN);
 	gpio_set_mode(TCK_PORT, GPIO_MODE_OUTPUT_10_MHZ,

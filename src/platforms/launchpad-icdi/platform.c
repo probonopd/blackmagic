@@ -62,6 +62,9 @@ platform_init(void)
 
 	gpio_enable_ahb_aperture();
 
+	/* Keep default values for TMS/TDI. */
+	gpio_set(TMS_PORT, TMS_PIN);
+	gpio_set(TDI_PORT, TDI_PIN);
 	gpio_mode_setup(TMS_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, TMS_PIN);
 	gpio_mode_setup(TCK_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, TCK_PIN);
 	gpio_mode_setup(TDI_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, TDI_PIN);

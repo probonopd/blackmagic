@@ -61,6 +61,8 @@ void platform_init(void)
 
 	GPIOC_OSPEEDR &=~0xF30;
 	GPIOC_OSPEEDR |= 0xA20;
+	/* Keep default values for TMS/TDI. */
+	gpio_set(JTAG_PORT, TMS_PIN | TDI_PIN);
 	gpio_mode_setup(JTAG_PORT, GPIO_MODE_OUTPUT,
 			GPIO_PUPD_NONE,
 			TMS_PIN | TCK_PIN | TDI_PIN);

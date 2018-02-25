@@ -110,6 +110,10 @@ void platform_init(void)
 	gpio_set_mode(USB_PU_PORT, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT,
 			USB_PU_PIN);
 
+	/* At least original BMP drives TDI and TMS direct.
+	 *  Keep default values for TMS/TDI.
+	 */
+	gpio_set(JTAG_PORT,  TMS_PIN | TDI_PIN);
 	gpio_set_mode(JTAG_PORT, GPIO_MODE_OUTPUT_50_MHZ,
 			GPIO_CNF_OUTPUT_PUSHPULL,
 			TMS_DIR_PIN | TMS_PIN | TCK_PIN | TDI_PIN);
