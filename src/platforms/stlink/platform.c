@@ -61,7 +61,13 @@ void platform_init(void)
 		led_idle_run = GPIO9;
 		srst_pin = SRST_PIN_V2;
 	}
-	/* Setup GPIO ports */
+
+	/* Setup GPIO ports.
+	* TMS has internal pull-up. Keep TMS high.
+	* E.g. NRF5 has nRST and SDWIO combined and TMS low
+	* will keep the NRF5 in reset.
+	*/
+	gpio_set(TMS_PORT, TMS_PIN);
 	gpio_set_mode(TMS_PORT, GPIO_MODE_OUTPUT_50_MHZ,
 	              GPIO_CNF_OUTPUT_PUSHPULL, TMS_PIN);
 	gpio_set_mode(TCK_PORT, GPIO_MODE_OUTPUT_50_MHZ,
